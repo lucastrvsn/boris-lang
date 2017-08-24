@@ -1,0 +1,6 @@
+function main
+    if i < j
+        i = i + j + 33
+        j = 3
+    end
+end
