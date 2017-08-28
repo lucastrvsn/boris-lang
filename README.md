@@ -1,34 +1,34 @@
 # Exemplo da linguagem
-```python
+```ruby
 import print from system
 
 function main
-  int i = 5
-  float f = 1.2
-  string s = "teste"
+    int i = 5
+    float f = 1.2
+    string s = "teste"
 
-  if i > f and a > b
-    print "Hello world!"
-  else
-    print "No hello world for you, sorry."
-  end
+    if i > f and a > b
+        print "Hello world!"
+    else
+        print "No hello world for you, sorry."
+    end
 
-  if f > i and i == 0 or 1
-    print "Ok."
-  else if i > f
-    print "Ok 2."
-  else
-    print "Ok 3."
-  end
+    if f > i and i == 0 or 1
+        print "Ok."
+    else if i > f
+        print "Ok 2."
+    else
+        print "Ok 3."
+    end
 
-  while s == "teste"
-    print "Hello world again..."
-    s = "teste2"
-  end
+    while s == "teste"
+        print "Hello world again..."
+        s = "teste2"
+    end
 
-  for n until == 0 +
-    print "Hello " + n
-  end
+    for n until == 0 +
+        print "Hello " + n
+    end
 end
 ```
     
