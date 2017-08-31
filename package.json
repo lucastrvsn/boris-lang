@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/luyctrevisan/boris-lang/issues"
   },
-  "homepage": "https://github.com/luyctrevisan/boris-lang#readme"
+  "homepage": "https://github.com/luyctrevisan/boris-lang#readme",
+  "dependencies": {
+    "chalk": "^2.1.0"
+  }
 }

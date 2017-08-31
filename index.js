@@ -1,15 +1,26 @@
 'use strict';
 
-var Token = require('./Lex/Token.js');
-var Lex = require('./Lex/Lex.js');
+var Token = require('./lex/Token.js');
+var Lex = require('./lex/Lex.js');
 
-var lex = new Lex('function main\nif i < j\ni = 2\nend\nend', {
+var lex = new Lex('./tests/file_1.bl', {
     'if': (lex) => {
-
+        
     },
     'while': (lex) => {
 
     },
 });
 
-lex.init();
+lex.init().then(input => {
+    console.log(input);
+
+    while (!lex.isEnd()) {
+        var input = lex.next();
+        if (input != null) {
+            console.log(input);
+        }
+    }
+}).catch(err => {
+    console.log('Error.');
+});
