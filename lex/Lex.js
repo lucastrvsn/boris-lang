@@ -8,19 +8,25 @@ class Lex {
         this.path = path;
         this.tokens = tokens;
         this.position = 0;
+        this.line = 1;
     }
 
     next() {
         var candidate = '';
 
-        for ( ; this.position < this.inputFromFile.length; this.position++) {
+        while (this.position < this.inputFromFile.length) {
             var letter = this.inputFromFile[this.position];
+
+            if (letter === '\n') {
+                this.line++;
+            }
 
             // Verifição do input que está sendo recebido.
             if (letter === ' ' || letter === '\n') {
                 this.position++;
                 return this.verify(candidate);
             } else {
+                this.position++;
                 candidate += letter;
             }
         }
@@ -33,13 +39,22 @@ class Lex {
     }
 
     verify(candidate) {
+        candidate = candidate.trim();
+
+        var position = {
+            position: this.position,
+            line: this.line
+        };
+
         if (candidate === '') {
             return null;
-        } else if (candidate === '\n') {
-            return 'barra n';
+        } else if (candidate in this.tokens) {
+            return this.tokens[candidate](position);
+        } else if (!isNaN(candidate)) {
+            return this.tokens['number'](position, candidate);
+        } else {
+            return this.tokens['id'](position, candidate);
         }
-
-        return candidate.trim();
     }
 
     isEnd() {
@@ -50,6 +65,7 @@ class Lex {
         return false;
     }
 
+    // Read the file and return entire file readed.
     init() {
         return new Promise((resolve, reject) => {
             fs.readFile(this.path, 'utf8', (err, data) => {

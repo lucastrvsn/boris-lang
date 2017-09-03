@@ -1,6 +1,14 @@
-function main
-    if i < j
-        i = i + j + 33
-        j = 3
+function main begin
+    int i = 0
+    string a = 2
+    float f = 1.2
+    bool b = true
+
+    if i < j begin
+        i = 33
+    end
+
+    while true begin
+        return true
     end
 end
