@@ -1,6 +1,6 @@
 'use strict'
 
-var Token = require('./lex/Token.js');
+var Token = require('./Token.js');
 
 module.exports = {
     'function': position => {
@@ -135,7 +135,7 @@ module.exports = {
         return new Token('T_NUMBER', value, position);
     },
     'text': (position, value) => {
-        value = value.replace(/\n/g, '');
+        value = value.replace(/\n/g, ''); // Regex para remover os \n dentro da string
         return new Token('T_TEXT', value, position);
     },
     'id': (position, name) => {

@@ -99,7 +99,8 @@ class Lex {
         tokens.forEach(t => {
             console.log(chalk.yellow('Token: ') + t.name);
             console.log(chalk.yellow('Lexeme: ') + t.lexeme);
-            console.log(chalk.yellow('Position: ') + t.position.position + ', ' + t.position.line);
+            console.log(chalk.yellow('Position: ') + t.position.position);
+            console.log(chalk.yellow('Line: ') + t.position.line);
             console.log(chalk.blue('------'));
         });
     }

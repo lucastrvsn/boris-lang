@@ -1,24 +1,21 @@
-function joel begin
-
+function teste begin
     i = 0
-
+    return
 end
 
 function main begin
     int i = 0
-    # asdasd
-    string a = 'baaa aaaaa' # asdasd
+    string a = 'texto de string'
     float f = 1.2
     bool b = true
 
+    # comentário
+
     if i < j begin
-        i = 33
-        i += i + 1
+        j = 10
     end
 
-    while true begin
-        return true
+    while i < 10 begin
+        i += 1
     end
-
-    string aa = ''
 end
