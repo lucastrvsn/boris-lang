@@ -1,11 +1,13 @@
 function main begin
     int i = 0
-    string a = 2
+    # asdasd
+    string a = 'baaa aaaaa' # asdasd
     float f = 1.2
     bool b = true
 
     if i < j begin
         i = 33
+        i += i + 1
     end
 
     while true begin

@@ -140,4 +140,7 @@ module.exports = {
     ',': position => {
         return new Token('T_COMMA', ',', position);
     },
+    'return': position => {
+        return new Token('T_RETURN', 'return', position);
+    },
 };

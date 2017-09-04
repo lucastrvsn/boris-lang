@@ -1,6 +1,8 @@
 'use strict';
 
 var fs = require('fs');
+var chalk = require('chalk');
+
 var Token = require('./Token.js');
 
 class Lex {
@@ -13,6 +15,8 @@ class Lex {
 
     next() {
         var candidate = '';
+        var isString = false;
+        var isComment = false;
 
         while (this.position < this.inputFromFile.length) {
             var letter = this.inputFromFile[this.position];
@@ -22,11 +26,24 @@ class Lex {
             }
 
             // Verifição do input que está sendo recebido.
-            if (letter === ' ' || letter === '\n') {
-                this.position++;
+            this.position++;
+
+            if (!isString && !isComment && (letter === ' ' || letter === '\n')) {
                 return this.verify(candidate);
-            } else {
-                this.position++;
+            } else if (!isString && !isComment && letter === '#') {
+                isComment = true;
+            } else if (!isString && isComment && letter === '\n') {
+                isComment = false;
+            } else if (!isString && letter === '\'') {
+                isString = true;
+            } else if (isString) {
+                if (letter === '\'') {
+                    isString = false;
+                    return this.verify(candidate, true);
+                }
+
+                candidate += letter;
+            } else if (!isString) {
                 candidate += letter;
             }
         }
@@ -34,11 +51,7 @@ class Lex {
         return -1;
     }
 
-    last() {
-
-    }
-
-    verify(candidate) {
+    verify(candidate, string) {
         candidate = candidate.trim();
 
         var position = {
@@ -50,11 +63,14 @@ class Lex {
             return null;
         } else if (candidate in this.tokens) {
             return this.tokens[candidate](position);
+        } else if (string) {
+            return this.tokens['text'](position, candidate);
         } else if (!isNaN(candidate)) {
             return this.tokens['number'](position, candidate);
-        } else {
-            return this.tokens['id'](position, candidate);
         }
+
+        // Caso não for nenhuma das opções acima, é retornado um token
+        return this.tokens['id'](position, candidate);
     }
 
     isEnd() {
@@ -76,6 +92,15 @@ class Lex {
                 this.inputFromFile = data;
                 return resolve(this.inputFromFile);
             });
+        });
+    }
+
+    print(tokens) {
+        tokens.forEach(t => {
+            console.log(chalk.yellow('Token: ') + t.name);
+            console.log(chalk.yellow('Lexeme: ') + t.lexeme);
+            console.log(chalk.yellow('Position: ') + t.position.position + ', ' + t.position.line);
+            console.log(chalk.blue('------'));
         });
     }
 }

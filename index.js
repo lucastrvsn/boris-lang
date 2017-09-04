@@ -14,7 +14,7 @@ lex.init().then(input => {
         }
     }
 
-    console.log(tokens);
+    lex.print(tokens);
 }).catch(err => {
     console.log(chalk.red('[ERROR] => ') + err);
 });
