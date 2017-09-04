@@ -34,9 +34,9 @@ class Lex {
                 isComment = true;
             } else if (!isString && isComment && letter === '\n') {
                 isComment = false;
-            } else if (!isString && letter === '\'') {
+            } else if (!isString && !isComment && letter === '\'') {
                 isString = true;
-            } else if (isString) {
+            } else if (isString && !isComment) {
                 if (letter === '\'') {
                     isString = false;
                     return this.verify(candidate, true);
@@ -51,7 +51,7 @@ class Lex {
         return -1;
     }
 
-    verify(candidate, string) {
+    verify(candidate, isString) {
         candidate = candidate.trim();
 
         var position = {
@@ -59,18 +59,18 @@ class Lex {
             line: this.line
         };
 
-        if (candidate === '') {
-            return null;
+        if (isString && candidate === '') {
+            return this.tokens['text'](position, '');
         } else if (candidate in this.tokens) {
             return this.tokens[candidate](position);
-        } else if (string) {
+        } else if (isString) {
             return this.tokens['text'](position, candidate);
-        } else if (!isNaN(candidate)) {
+        } else if (!isNaN(candidate) && candidate !== '') {
             return this.tokens['number'](position, candidate);
+        } else if (candidate !== '') {
+            // Caso não for nenhuma das opções acima, é retornado um token
+            return this.tokens['id'](position, candidate);
         }
-
-        // Caso não for nenhuma das opções acima, é retornado um token
-        return this.tokens['id'](position, candidate);
     }
 
     isEnd() {

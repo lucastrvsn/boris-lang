@@ -6,6 +6,9 @@ module.exports = {
     'function': position => {
         return new Token('T_FUNC', 'function', position);
     },
+    'main': position => {
+        return new Token('T_MAIN', 'main', position);
+    },
     'if': position => {
         return new Token('T_IF', 'if', position);
     },
@@ -132,6 +135,7 @@ module.exports = {
         return new Token('T_NUMBER', value, position);
     },
     'text': (position, value) => {
+        value = value.replace(/\n/g, '');
         return new Token('T_TEXT', value, position);
     },
     'id': (position, name) => {

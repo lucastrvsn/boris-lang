@@ -1,0 +1,9 @@
+function main begin
+    string s = ''
+    s = 'aaaa'
+    s = 'bb b b b      a'
+    s = '2'
+    s = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+        a  sdasdsad
+        aa'
+end

@@ -1,3 +1,9 @@
+function joel begin
+
+    i = 0
+
+end
+
 function main begin
     int i = 0
     # asdasd
@@ -13,4 +19,6 @@ function main begin
     while true begin
         return true
     end
+
+    string aa = ''
 end
