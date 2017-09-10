@@ -3,7 +3,7 @@
 'use strict';
 
 var Lex = require('./lex/Lex.js');
-var Semantic = require('./semantic/Semantic.js');
+var Syntactic = require('./syntactic/Syntactic.js');
 var chalk = require('chalk');
 
 var lex = new Lex('./tests/file_1.bl', require('./lex/tokens.js'));
@@ -17,7 +17,9 @@ lex.init().then(input => {
         }
     }
 
-    var semantic = new Semantic(tokens, require('./semantic/rules.js')).init();
+    lex.print(tokens);
+
+    var syntactic = new Syntactic(tokens, require('./syntactic/rules.js')).init();
 }).catch(err => {
     console.log(chalk.red('[ERROR] => ') + err);
 });

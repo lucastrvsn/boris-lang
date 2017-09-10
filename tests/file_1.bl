@@ -4,7 +4,7 @@ function teste begin
 end
 
 function main begin
-    int i = 0
+    int i = 2
     string a = 'texto de string'
     float f = 1.2
     bool b = true
