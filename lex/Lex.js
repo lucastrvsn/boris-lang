@@ -59,12 +59,14 @@ class Lex {
             line: this.line
         };
 
-        if (isString && candidate === '') {
-            return this.tokens['text'](position, '');
+        // Esse if é para identificar uma string vazia, caso for uma
+        if (isString) {
+            if (candidate === '') {
+                return this.tokens['text'](position, '');
+            }
+            return this.tokens['text'](position, candidate);
         } else if (candidate in this.tokens) {
             return this.tokens[candidate](position);
-        } else if (isString) {
-            return this.tokens['text'](position, candidate);
         } else if (!isNaN(candidate) && candidate !== '') {
             return this.tokens['number'](position, candidate);
         } else if (candidate !== '') {

@@ -4,6 +4,5 @@ function main begin
     s = 'bb b b b      a'
     s = '2'
     s = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-        a  sdasdsad
         aa'
 end

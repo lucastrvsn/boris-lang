@@ -6,7 +6,7 @@ var Lex = require('./lex/Lex.js');
 var Semantic = require('./semantic/Semantic.js');
 var chalk = require('chalk');
 
-var lex = new Lex('./tests/file_1.bl', require('./lex/tokens.js'));
+var lex = new Lex('./tests/file_string.bl', require('./lex/tokens.js'));
 var tokens = [];
 
 lex.init().then(input => {
@@ -16,6 +16,8 @@ lex.init().then(input => {
             tokens.push(token);
         }
     }
+
+    lex.print(tokens);
 
     var semantic = new Semantic(tokens, require('./semantic/rules.js')).init();
 }).catch(err => {
