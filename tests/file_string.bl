@@ -3,6 +3,9 @@ function main begin
     s = 'aaaa'
     s = 'bb b b b      a'
     s = '2'
+
+    asdasd
+
     s = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
         aa'
 end

@@ -129,6 +129,15 @@ module.exports = {
     'end': position => {
         return new Token('T_END', 'end', position);
     },
+    'until': position => {
+        return new Token('T_UNTIL', 'until', position);
+    },
+    'asc': position => {
+        return new Token('T_ASC', 'asc', position);
+    },
+    'desc': position => {
+        return new Token('T_DESC', 'desc', position);
+    },
 
     // Sequences of somewhat
     'number': (position, value) => {

@@ -1,11 +1,11 @@
 'use strict'
 
 var errors = require('../errors.js');
+var rules = require('./rules.js');
 
 class Syntactic {
-    constructor(tokens, rules) {
+    constructor(tokens) {
         this.tokens = tokens;
-        this.rules = rules;
         this.success = false;
         this.position = 0;
     }
@@ -13,8 +13,11 @@ class Syntactic {
     init() {
         // Procura pelo main e, caso encontre, chama a função para
         // detecção dos comandos
-        if (this.rules['T_MAIN'](this)) {
-            this.rules['COMMANDS'](this);
+        if (rules.main(this)) {
+            this.success = true;
+            console.log('PASSOU NO PROCESSO LEXICO');
+        } else {
+            this.success = false;
         }
     }
 

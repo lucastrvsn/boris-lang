@@ -4,18 +4,62 @@ function teste begin
 end
 
 function main begin
-    int i = 2
-    string a = 'texto de string'
-    float f = 1.2
-    bool b = true
+    c = e / d
 
-    # comentário
+    # hello
+
+    if i < j begin
+    end
 
     if i < j begin
         j = 10
+        j = 10
+        j = 10
+        j *= 10
+        j /= 10
+        j -= 10
+        j += 10
+
+        if i < j begin
+            if i < j begin
+                if i < j begin
+                    string b = 2323
+
+                    if i < j begin
+                        if i < j begin
+                            if i begin
+                                if i < j begin
+                                    b = 0
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
     end
 
     while i < 10 begin
         i += 1
+    end
+
+    while i < 10 begin
+        i += 1
+    end
+
+    while i < 10 begin
+        i += 1
+    end
+
+    while i < 10 begin
+        i += 1
+    end
+
+    while i < 10 begin
+        i += 1
+    end
+
+    for i until i < 20 desc begin
+        b = 0
     end
 end

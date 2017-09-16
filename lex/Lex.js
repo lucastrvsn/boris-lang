@@ -4,9 +4,10 @@ var fs = require('fs');
 var chalk = require('chalk');
 
 var Token = require('./Token.js');
+var tokens = require('./tokens.js');
 
 class Lex {
-    constructor(path, tokens) {
+    constructor(path) {
         this.path = path;
         this.tokens = tokens;
         this.position = 0;
@@ -21,15 +22,17 @@ class Lex {
         while (this.position < this.inputFromFile.length) {
             var letter = this.inputFromFile[this.position];
 
-            if (letter === '\n') {
-                this.line++;
-            }
-
             // Verifição do input que está sendo recebido.
             this.position++;
 
             if (!isString && !isComment && (letter === ' ' || letter === '\n')) {
-                return this.verify(candidate);
+                var result = this.verify(candidate);
+
+                if (letter === '\n') {
+                    this.line++;
+                }
+
+                return result;
             } else if (!isString && !isComment && letter === '#') {
                 isComment = true;
             } else if (!isString && isComment && letter === '\n') {
@@ -43,7 +46,7 @@ class Lex {
                 }
 
                 candidate += letter;
-            } else if (!isString) {
+            } else if (!isString && !isComment) {
                 candidate += letter;
             }
         }
@@ -64,13 +67,14 @@ class Lex {
             if (candidate === '') {
                 return this.tokens['text'](position, '');
             }
+
             return this.tokens['text'](position, candidate);
         } else if (candidate in this.tokens) {
             return this.tokens[candidate](position);
         } else if (!isNaN(candidate) && candidate !== '') {
             return this.tokens['number'](position, candidate);
         } else if (candidate !== '') {
-            // Caso não for nenhuma das opções acima, é retornado um token
+            // Caso não for nenhuma das opções acima, é retornado um token id
             return this.tokens['id'](position, candidate);
         }
     }
