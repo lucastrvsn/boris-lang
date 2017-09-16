@@ -6,7 +6,7 @@ var chalk = require('chalk');
 var Token = require('./Token.js');
 var tokens = require('./tokens.js');
 
-class Lex {
+class Lexical {
     constructor(path) {
         this.path = path;
         this.tokens = tokens;
@@ -112,4 +112,4 @@ class Lex {
     }
 }
 
-module.exports = Lex;
+module.exports = Lexical;

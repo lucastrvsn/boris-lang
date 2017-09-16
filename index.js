@@ -2,22 +2,22 @@
 
 'use strict';
 
-var Lex = require('./lex/Lex.js');
+var Lexical = require('./lexical/Lexical.js');
 var Syntactic = require('./syntactic/Syntactic.js');
 var chalk = require('chalk');
 
-var lex = new Lex('./tests/file_1.bl');
+var lexical = new Lexical('./tests/file_1.bl');
 var tokens = [];
 
-lex.init().then(input => {
-    while (!lex.isEnd()) {
-        var token = lex.next();
+lexical.init().then(input => {
+    while (!lexical.isEnd()) {
+        var token = lexical.next();
         if (token != null) {
             tokens.push(token);
         }
     }
 
-    lex.print(tokens);
+    lexical.print(tokens);
 
     var syntactic = new Syntactic(tokens).init();
 }).catch(err => {
