@@ -142,18 +142,45 @@ module.exports = {
 
                             if (token.name === 'T_BEGIN') {
                                 token = syntatic.next();
+                                var commands = this.commands(syntatic);
 
-                                if (this.commands(syntatic).name === 'T_END') {
+                                if (commands.name != undefined && commands.name === 'T_END') {
                                     console.log(chalk.green('✔ LOOP FOR OK'));
                                     return true;
                                 } else {
                                     // ERROR, END EXPECTED
+                                    console.log(chalk.red('❌ FOR ERROR at line ' + token.position.line));
+                                    console.log(chalk.yellow('Token END was expected'));
                                 }
+                            } else {
+                                // ERROR, BEGIN EXPECTED
+                                console.log(chalk.red('❌ FOR ERROR at line ' + token.position.line));
+                                console.log(chalk.yellow('Token BEGIN was expected'));
                             }
+                        } else {
+                            // ERROR, DESC OR ASC EXPECTED
+                            console.log(chalk.red('❌ FOR ERROR at line ' + token.position.line));
+                            console.log(chalk.yellow('Token DESC or ASC was expected'));
                         }
+                    } else {
+                        // ERROR, LOGICAL EXPRESSION EXPECTED
+                        console.log(chalk.red('❌ FOR ERROR at line ' + token.position.line));
+                        console.log(chalk.yellow('Logical Expression was expected'));
                     }
+                } else {
+                    // ERROR, UNTIL EXPECTED
+                    console.log(chalk.red('❌ FOR ERROR at line ' + token.position.line));
+                    console.log(chalk.yellow('Token UNTIL was expected'));
                 }
+            } else {
+                // ERROR, ID OR DECLARATION EXPECTED
+                console.log(chalk.red('❌ FOR ERROR at line ' + token.position.line));
+                console.log(chalk.yellow('Token ID or Declaration was expected'));
             }
+        } else {
+            // ERROR, FOR TOKEN EXPECTED
+            console.log(chalk.red('❌ FOR ERROR at line ' + token.position.line));
+            console.log(chalk.yellow('Token FOR was expected'));
         }
 
         return false;
@@ -197,9 +224,12 @@ module.exports = {
                         syntatic.next();
 
                         if (token.name === 'T_BEGIN') {
-                            if (this.commands(syntatic).name === 'T_END') {
+                            var commands = this.commands(syntatic);
+
+                            if (commands && commands.name !== undefined && commands.name === 'T_END') {
                                 return true;
                             } else {
+                                console.log('END WAS EXPECTED');
                                 return false;
                             }
                         }

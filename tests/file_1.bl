@@ -61,5 +61,4 @@ function main begin
 
     for i until i < 20 desc begin
         b = 0
-    end
 end
