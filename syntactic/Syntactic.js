@@ -15,7 +15,6 @@ class Syntactic {
         // detecção dos comandos
         if (rules.main(this)) {
             this.success = true;
-            console.log('PASSOU NO PROCESSO LEXICO');
         } else {
             this.success = false;
         }

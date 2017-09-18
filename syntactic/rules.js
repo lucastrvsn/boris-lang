@@ -17,10 +17,15 @@ module.exports = {
                     return true;
                 } else {
                     syntatic.prev();
+                    console.log(chalk.red('❌ ARITHMETIC ERROR at line ' + token.position.line));
+                    console.log(chalk.yellow('Arithmetic Expression was expected'));
                 }
             }
 
             return true;
+        } else {
+            console.log(chalk.red('❌ ARITHMETIC ERROR at line ' + token.position.line));
+            console.log(chalk.yellow('Unary Expression was expected'));
         }
 
         return false;
@@ -39,10 +44,13 @@ module.exports = {
                 if (this.arithmetic(syntatic)) {
                     console.log(chalk.green('✔ ATTRIBUTION OK'));
                     return true;
+                } else {
+                    console.log(chalk.red('❌ ATTRIBUTION ERROR at line ' + token.position.line));
+                    console.log(chalk.yellow('Arithmetic Expression was expected'));
                 }
             } else {
-                console.log(chalk.red('✔ ATTRIBUTION ERROR'));
-                return false;
+                console.log(chalk.red('❌ ATTRIBUTION ERROR at line ' + token.position.line));
+                console.log(chalk.yellow('Token ATOP was expected'));
             }
         }
 
@@ -114,8 +122,17 @@ module.exports = {
                         console.log(chalk.green('✔ DECLARATION OK'));
                         syntatic.next();
                         return true;
+                    } else {
+                        console.log(chalk.red('❌ DECLARATION ERROR at line ' + token.position.line));
+                        console.log(chalk.yellow('Unary Expression was expected'));
                     }
+                } else {
+                    console.log(chalk.red('❌ DECLARATION ERROR at line ' + token.position.line));
+                    console.log(chalk.yellow('Token ATOP was expected'));
                 }
+            } else {
+                console.log(chalk.red('❌ DECLARATION ERROR at line ' + token.position.line));
+                console.log(chalk.yellow('Token ID was expected'));
             }
         }
 
@@ -227,16 +244,22 @@ module.exports = {
                             var commands = this.commands(syntatic);
 
                             if (commands && commands.name !== undefined && commands.name === 'T_END') {
+                                console.log(chalk.cyanBright('\n████████████████████████████████████████████'));
+                                console.log(chalk.bgMagentaBright.black('ÕOOHHH ÃAAAAHH OH AAHH OOÕOOHH AAAWWNNN OOOO'));
+                                console.log(chalk.cyanBright('████████████████████████████████████████████'));
                                 return true;
                             } else {
-                                console.log('END WAS EXPECTED');
-                                return false;
+                                console.log(chalk.red('❌ MAIN ERROR at line ' + token.position.line));
+                                console.log(chalk.yellow('Token END was expected'));
                             }
+                        } else {
+                            console.log(chalk.red('❌ MAIN ERROR at line ' + token.position.line));
+                            console.log(chalk.yellow('Token BEGIN was expected'));
                         }
                     }
                 }
             } else {
-                throw 'Function main not founded.';
+                console.log(chalk.red('Main function not founded!'));
                 return false;
             }
         }
@@ -257,6 +280,9 @@ module.exports = {
             }
 
             return true;
+        } else {
+            console.log(chalk.red('❌ RELATIONAL ERROR at line ' + token.position.line));
+            console.log(chalk.yellow('Arithmetic Expression was expected'));
         }
 
         return false;
@@ -277,8 +303,17 @@ module.exports = {
                     if (this.commands(syntatic).name === 'T_END') {
                         console.log(chalk.green('✔ SELECTION OK'));
                         return true;
+                    } else {
+                        console.log(chalk.red('❌ SELECTION ERROR at line ' + token.position.line));
+                        console.log(chalk.yellow('Token END was expected'));
                     }
+                } else {
+                    console.log(chalk.red('❌ SELECTION ERROR at line ' + token.position.line));
+                    console.log(chalk.yellow('Token BEGIN was expected'));
                 }
+            } else {
+                console.log(chalk.red('❌ SELECTION ERROR at line ' + token.position.line));
+                console.log(chalk.yellow('Logical Expression was expected'));
             }
         }
 
@@ -332,9 +367,16 @@ module.exports = {
                         console.log(chalk.green('✔ LOOP OK'));
                         return true;
                     } else {
-                        // ERROR, END EXPECTED
+                        console.log(chalk.red('❌ LOOP WHILE ERROR at line ' + token.position.line));
+                        console.log(chalk.yellow('Token END was expected'));
                     }
+                } else {
+                    console.log(chalk.red('❌ LOOP WHILE ERROR at line ' + token.position.line));
+                    console.log(chalk.yellow('Token BEGIN was expected'));
                 }
+            } else {
+                console.log(chalk.red('❌ LOOP WHILE ERROR at line ' + token.position.line));
+                console.log(chalk.yellow('Logical Expression was expected'));
             }
         }
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-'use strict';
+'use strict'
 
 var Lexical = require('./lexical/Lexical.js');
 var Syntactic = require('./syntactic/Syntactic.js');

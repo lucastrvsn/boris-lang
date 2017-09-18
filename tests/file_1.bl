@@ -4,8 +4,39 @@ function teste begin
 end
 
 function main begin
-    c = e / d
+    c = e / d c = e / d
+    int 2ac2 = 10
 
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
+    # hello
     # hello
 
     if i < j begin
@@ -18,9 +49,10 @@ function main begin
         j *= 10
         j /= 10
         j -= 10
+        j += 1
         j += 10
 
-        if i < j begin
+        if i < j or i < 2 begin
             if i < j begin
                 if i < j begin
                     string b = 2323
@@ -49,6 +81,126 @@ function main begin
 
     while i < 10 begin
         i += 1
+        i += 1
+        i += 1
+        i += 1
+        i += 1
+        i += 1
+        i += 1
+        i += 1
+        i += 1
+        i += 1
+        while i < 10 begin
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+        end
+
+        while i < 10 begin
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+        end
+
+        while i < 10 begin
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+        end
+
+        while i < 10 begin
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+        end
+
+        while i < 10 begin
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+        end
+
+        while i < 10 begin
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+        end
+
+        while i < 10 begin
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+            i += 1
+        end
     end
 
     while i < 10 begin
@@ -61,4 +213,5 @@ function main begin
 
     for i until i < 20 desc begin
         b = 0
+    end
 end
