@@ -1,0 +1,17 @@
+function main begin
+    int aaa = 232
+    string teste = 'asdasd'
+    float teste2 = 2
+    teste2 = teste
+    bool b = true
+
+    int i = 0
+    if i begin
+    end
+
+    i = 5
+    for i until i < 20 desc begin
+        int c = 0
+        c = 10 + 2
+    end
+end

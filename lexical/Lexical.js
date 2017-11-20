@@ -10,6 +10,7 @@ class Lexical {
     constructor(path) {
         this.path = path;
         this.tokens = tokens;
+        this.tokenArray = [];
         this.position = 0;
         this.line = 1;
     }
@@ -26,13 +27,21 @@ class Lexical {
             this.position++;
 
             if (!isString && !isComment && (letter === ' ' || letter === '\n')) {
-                var result = this.verify(candidate);
-
-                if (letter === '\n') {
-                    this.line++;
+                if (letter === ' ') {
+                    var result = this.verify(candidate);
+                    return;
                 }
 
-                return result;
+                if (letter === '\n') {
+                    var position = {
+                        position: this.position,
+                        line: this.line++
+                    };
+                    
+                    this.verify(candidate)
+                    this.tokenArray.push(new Token('T_EOL', 'end_of_line', position));
+                    return;
+                }
             } else if (!isString && !isComment && letter === '#') {
                 isComment = true;
             } else if (!isString && isComment && letter === '\n') {
@@ -42,7 +51,8 @@ class Lexical {
             } else if (isString && !isComment) {
                 if (letter === '\'') {
                     isString = false;
-                    return this.verify(candidate, true);
+                    this.verify(candidate, true);
+                    return;
                 }
 
                 candidate += letter;
@@ -65,17 +75,22 @@ class Lexical {
         // Esse if é para identificar uma string vazia, caso for uma
         if (isString) {
             if (candidate === '') {
-                return this.tokens['text'](position, '');
+                this.tokenArray.push(this.tokens['text'](position, ''));
+                return false;
+            } else {
+                this.tokenArray.push(this.tokens['text'](position, candidate));
+                return false;
             }
-
-            return this.tokens['text'](position, candidate);
         } else if (candidate in this.tokens) {
-            return this.tokens[candidate](position);
+            this.tokenArray.push(this.tokens[candidate](position));
+            return true;
         } else if (!isNaN(candidate) && candidate !== '') {
-            return this.tokens['number'](position, candidate);
+            this.tokenArray.push(this.tokens['number'](position, candidate));
+            return false;
         } else if (candidate !== '') {
             // Caso não for nenhuma das opções acima, é retornado um token id
-            return this.tokens['id'](position, candidate);
+            this.tokenArray.push(this.tokens['id'](position, candidate));
+            return false;
         }
     }
 
@@ -85,6 +100,12 @@ class Lexical {
         }
 
         return false;
+    }
+
+    translate() {
+        while (!this.isEnd()) {
+            var token = this.next();
+        }
     }
 
     // Read the file and return entire file readed.

@@ -156,4 +156,7 @@ module.exports = {
     'return': position => {
         return new Token('T_RETURN', 'return', position);
     },
+    '\n': position => {
+        return new Token('T_EOL', 'end_of_line', position);
+    }
 };

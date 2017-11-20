@@ -4,22 +4,21 @@
 
 var Lexical = require('./lexical/Lexical.js');
 var Syntactic = require('./syntactic/Syntactic.js');
+var MachineCode = require('./machine-code/machine-code.js');
 var chalk = require('chalk');
 
-var lexical = new Lexical('./tests/file_1.bl');
-var tokens = [];
+var lexical = new Lexical('./tests/file_2.bl');
 
 lexical.init().then(input => {
-    while (!lexical.isEnd()) {
-        var token = lexical.next();
-        if (token != null) {
-            tokens.push(token);
-        }
+    lexical.translate();
+
+    lexical.print(lexical.tokenArray);
+
+    var syntactic = new Syntactic(lexical.tokenArray);
+    if (syntactic.init()) {
+        console.log(chalk.green('[SUCCESS] Syntatic and Semantic process completed.'));
+        MachineCode.init(lexical.tokenArray);
     }
-
-    lexical.print(tokens);
-
-    var syntactic = new Syntactic(tokens).init();
 }).catch(err => {
     console.log(chalk.red('[ERROR] => ') + err);
 });

@@ -15,8 +15,10 @@ class Syntactic {
         // detecção dos comandos
         if (rules.main(this)) {
             this.success = true;
+            return true;
         } else {
             this.success = false;
+            return false
         }
     }
 

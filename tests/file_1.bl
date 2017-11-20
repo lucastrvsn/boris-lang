@@ -43,6 +43,9 @@ function main begin
     end
 
     if i < j begin
+    end
+
+    if i < j begin
         j = 10
         j = 10
         j = 10
