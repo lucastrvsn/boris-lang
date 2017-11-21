@@ -14,7 +14,7 @@ var variables = [];
 
 module.exports = {
     isVariable(token) {
-        if (token.name !== 'T_NUMBER') {
+        if (token.name !== 'T_NUMBER' && token.name !== 'T_TEXT') {
             return false;
         }
 
@@ -61,14 +61,27 @@ module.exports = {
         }
 
         if (!this.verify(name, type, value)) {
-            return false;
+            if (this.getVariable(value) === null) {
+                if (!isNaN(value)) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
         }
 
         var variable = new Variable(name, type, value);
         variables.push(variable);
 
-        console.log(variables);
-        
         return true;
+    },
+    getVariable(name) {
+        variables.find(x => {
+            if (x.name === name) {
+                return x;
+            }
+        });
+
+        return null;
     }
 };

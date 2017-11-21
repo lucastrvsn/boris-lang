@@ -8,6 +8,7 @@ module.exports = {
         var token = syntatic.actual();
 
         if (!semantic.isVariable(token) && !semantic.exists(token.lexeme)) {
+            console.log(token);
             errors.print.VARIABLE_NOT_FOUNDED(token.lexeme);
             return false;
         }
@@ -262,6 +263,7 @@ module.exports = {
 
                         if (token.name === 'T_BEGIN') {
                             var commands = this.commands(syntatic);
+                            console.log(commands);
 
                             if (commands && commands.name !== undefined && commands.name === 'T_END') {
                                 return true;
@@ -287,7 +289,7 @@ module.exports = {
         if (this.arithmetic(syntatic)) {
             token = syntatic.actual();
 
-            if (token.name === 'T_ROP') {
+            if (token.name === 'T_ROP' || token.name === 'T_EOP') {
                 syntatic.next();
                 return this.relational(syntatic);
             } else {
