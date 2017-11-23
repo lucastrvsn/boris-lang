@@ -6,7 +6,6 @@ var rules = require('./rules.js');
 class Syntactic {
     constructor(tokens) {
         this.tokens = tokens;
-        this.success = false;
         this.position = 0;
     }
 
@@ -14,11 +13,9 @@ class Syntactic {
         // Procura pelo main e, caso encontre, chama a função para
         // detecção dos comandos
         if (rules.main(this)) {
-            this.success = true;
-            return true;
+            return { success: true, semantic: rules.getSemantic() };
         } else {
-            this.success = false;
-            return false
+            return { success: false };
         }
     }
 

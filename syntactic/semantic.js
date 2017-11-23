@@ -8,6 +8,18 @@ class Variable {
         this.type = type;
         this.value = value;
     }
+
+    getValue() {
+        return this.value;
+    }
+
+    getRegister() {
+        return this.register;
+    }
+
+    setRegister(number) {
+        this.register = number;
+    }
 }
 
 var variables = [];
@@ -76,12 +88,17 @@ module.exports = {
         return true;
     },
     getVariable(name) {
+        var result = null;
+
         variables.find(x => {
             if (x.name === name) {
-                return x;
+                result = x;
             }
         });
 
-        return null;
+        return result;
+    },
+    getVariables() {
+        return variables;
     }
 };

@@ -4,6 +4,9 @@ var errors = require('../errors.js');
 var semantic = require('./semantic.js');
 
 module.exports = {
+    getSemantic() {
+        return semantic;
+    },
     arithmetic(syntatic) {
         var token = syntatic.actual();
 
@@ -263,7 +266,6 @@ module.exports = {
 
                         if (token.name === 'T_BEGIN') {
                             var commands = this.commands(syntatic);
-                            console.log(commands);
 
                             if (commands && commands.name !== undefined && commands.name === 'T_END') {
                                 return true;

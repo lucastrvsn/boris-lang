@@ -1,25 +1,26 @@
 function main begin
     int aaa = 232
-    string teste = 'asdasd'
-    float teste2 = 2
-    bool b = true
-
     int i = 0
 
-    int t1 = 0
-    int t2 = t1
-    t2 = 'texto'
+    i = 1 + aaa
 
-    if i begin
+    if i > 10 begin
+        aaa = 2
+        aaa = 2
+        aaa = 2
+        aaa = 2
+        aaa = 2
     end
 
-    i = 5
-    for i until i < 20 desc begin
-        int c = 0
-        c = 10 + 2
+    if i <= 20 begin
+        aaa = 2
     end
 
-    if t1 >= 0 begin
-        t1 = 10
-    end
+    # while i begin
+    #    aaa = 22
+    # end
+
+    # for i until i < 20 desc begin
+    #    int b = 0
+    # end
 end
