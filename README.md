@@ -1,3 +1,5 @@
+**Disclaimer:** I'm made this compiler for a college project. Not completed and not should be used as a real language. If some day I have time, I'll complete this. Thanks! :D
+
 # Gramatica da Linguagem
 
 # Exemplo da linguagem
